@@ -3,16 +3,14 @@
 class Panuci_Logger_Model_Observer {
 
     public function saveProductBefore(Varien_Event_Observer $observer) {
-
-    	$logs = $this->getChanges($observer);
-
-    	try {
-    		foreach ($logs as $log) {
-	    		$model = Mage::getModel('logger/logger')->addData($log);
-	    		$model->save();
-	    	}	
+        try {
+            $logs = $this->getChanges($observer);
+            foreach ($logs as $log) {
+                $model = Mage::getModel('logger/logger')->addData($log);
+                $model->save();
+            }	
     	}catch(Exception $e){
-    		var_dump($e->getMessage()); die;
+    		Mage::log($e->getMessage(), null, 'panuciLoggerErrors.log');
     	}
     }
 
