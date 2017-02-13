@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <panuci_logger translate="title">
+            <title>Panuci</title>
+            <sort_order>90</sort_order>
+            <children>
+                <list module="panuci_logger" translate="title">
+                    <title>Logger</title>
+                    <sort_order>1</sort_order>
+                    <action>adminhtml/logger/</action>
+                </list>
+            </children>
+        </panuci_logger>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <panuci_logger translate="title">
+                        <title>Panuci</title>
+                        <sort_order>-100</sort_order>
+                        <children>
+                            <list translate="title" module="panuci_logger">
+                                <title>Logger</title>
+                                <sort_order>1</sort_order>
+                            </list>
+                        </children>
+                    </panuci_logger>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

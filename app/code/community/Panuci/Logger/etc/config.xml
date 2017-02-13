@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Panuci
+ * @package     Panuci_Logger
+ * @author      Vitor Panuci
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Panuci_Logger>
+            <version>0.0.1</version>
+        </Panuci_Logger>
+    </modules>
+    <global>
+        <helpers>
+            <panuci_logger>
+                <class>Mage_Core_Helper</class>
+            </panuci_logger>
+        </helpers>
+        <models>
+            <logger>
+                <class>Panuci_Logger_Model</class>
+                <resourceModel>logger_resource</resourceModel>
+            </logger>
+            <logger_resource>
+                <class>Panuci_Logger_Model_Resource</class>
+                <entities>
+                    <logger>
+                        <table>panuci_logger</table>
+                    </logger>
+                </entities>
+            </logger_resource>
+        </models>
+        <resources>
+            <logger_setup>
+                <setup>
+                    <module>Panuci_Logger</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </logger_setup>
+            <logger_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </logger_write>
+            <logger_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </logger_read>
+        </resources>
+        <blocks>
+            <panuci_logger>
+                <class>Panuci_Logger_Block</class>
+            </panuci_logger>
+        </blocks>
+        <helpers>
+            <panuci_logger>
+                <class>Panuci_Logger_Helper</class>
+            </panuci_logger>
+        </helpers>      
+        <events>
+    		<catalog_product_save_before>
+    			<observers>
+    				<logger>
+    					<class>logger/observer</class>
+    					<method>saveProductBefore</method>
+    					<type>singleton</type>
+    				</logger>
+    			</observers>
+    		</catalog_product_save_before>            
+    	</events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <logger_bar before="Mage_Adminhtml">Panuci_Logger_Adminhtml</logger_bar>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

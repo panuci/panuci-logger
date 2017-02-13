@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_logger_list>
+        <reference name="content">
+            <block type="panuci_logger/adminhtml_logger_logger" name="logger_logger" />
+        </reference>
+    </adminhtml_logger_list>
+</layout>
