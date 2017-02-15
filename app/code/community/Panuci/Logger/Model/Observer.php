@@ -21,6 +21,10 @@ class Panuci_Logger_Model_Observer {
     	$created_time = Mage::getModel('core/date')->date('Y-m-d H:i:s');
 
         $laReturn = array();
+
+        if(empty($oldProduct->getId())){
+            return $laReturn;
+        }
         
         // Price
         if($oldProduct->getData('price') != $newProduct->getData('price')){
